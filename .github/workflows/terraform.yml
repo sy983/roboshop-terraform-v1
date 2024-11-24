@@ -20,7 +20,7 @@ jobs:
       - name: terraform init
         run: terraform init -backend-config=env-dev/state.tfvars
       - name: terraform apply
-        run: terraform plan -var-file=env-dev/main.tfvars -auto-approve
+        run: terraform apply -var-file=env-dev/main.tfvars -auto-approve
 
   QA:
     runs-on: ubuntu-latest
