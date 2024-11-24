@@ -26,5 +26,5 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: terraform init
-        run: terraform init -backend-config=env-prod/state.tfvars
+        run: terraform init -backend-config=env-prd/state.tfvars
 
