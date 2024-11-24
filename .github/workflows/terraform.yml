@@ -21,7 +21,7 @@ jobs:
     steps:
       - run: echo Dummy job
 
-  DEV:
+  PROD:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
