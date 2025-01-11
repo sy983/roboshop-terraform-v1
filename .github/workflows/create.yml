@@ -21,26 +21,26 @@ jobs:
       - name: terraform apply
         run: terraform apply -var-file=env-dev/main.tfvars -auto-approve
 
-  QA:
-    runs-on: ubuntu-latest
-    environment: qa
-    needs: DEV-APPLY
-    steps:
-      - run: echo Dummy job
-
-  UAT:
-    runs-on: ubuntu-latest
-    environment: uat
-    needs: QA
-    steps:
-      - run: echo Dummy job
-
-  PROD:
-    runs-on: self-hosted
-    environment: prod
-    needs: UAT
-    steps:
-      - uses: actions/checkout@v4
-      - name: terraform init
-        run: terraform init -backend-config=env-prd/state.tfvars
+#  QA:
+#    runs-on: ubuntu-latest
+#    environment: qa
+#    needs: DEV-APPLY
+#    steps:
+#      - run: echo Dummy job
+#
+#  UAT:
+#    runs-on: ubuntu-latest
+#    environment: uat
+#    needs: QA
+#    steps:
+#      - run: echo Dummy job
+#
+#  PROD:
+#    runs-on: self-hosted
+#    environment: prod
+#    needs: UAT
+#    steps:
+#      - uses: actions/checkout@v4
+#      - name: terraform init
+#        run: terraform init -backend-config=env-prd/state.tfvars
 
