@@ -15,7 +15,7 @@ module "vpc" {
 
 }
 
-module "ec2" {
+module "apps" {
   source = "./modules/ec2"
   for_each = var.ec2
   name     = each.key
