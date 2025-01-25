@@ -1,7 +1,7 @@
 resource "aws_security_group" "allow_tls" {
   name        =  "${var.name}-${var.env}-sg"
   description =  "${var.name}-${var.env}-sg"
-  vpc_id      =   "var.vpc_id"
+  vpc_id      =  "var.vpc_id"
 
   egress {
     from_port        = 0
