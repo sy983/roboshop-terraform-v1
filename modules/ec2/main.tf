@@ -1,6 +1,6 @@
 resource "aws_security_group" "allow_tls" {
   name        =  "${var.name}-${var.env}-sg"
-  description = "Allow TLS inbound traffic and all outbound traffic"
+  description =  "${var.name}-${var.env}-sg"
   vpc_id      = var.vpc_id
 
   egress {
@@ -8,7 +8,7 @@ resource "aws_security_group" "allow_tls" {
     to_port          = 0
     protocol         = "-1"
     cidr_blocks      = ["0.0.0.0/0"]
-    ipv6_cidr_blocks = ["::/0"]
+
   }
 
   ingress {
