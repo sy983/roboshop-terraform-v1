@@ -74,13 +74,6 @@ resource "aws_instance" "main" {
     vault_token =  var.vault_token
 
   }))
-
-#   user_data = base64encode(templatefile("${path.module}/userdata.sh",{
-#     env         = var.env
-#     role_name   = var.name
-#     vault_token = var.vault_token
-#   }))
-
   tags = {
     name = "${var.name}-${var.env}"
   }
