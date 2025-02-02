@@ -51,7 +51,7 @@ db = {
 
   rabbitmq = {
 
-    subnet_ref    = "mysql"
+    subnet_ref    = "db"
     instance_type = "t3.small"
     allow_port    = "5672"
     allow_sg_cidr = ["10.10.4.0/24", "10.10.5.0/24"]
