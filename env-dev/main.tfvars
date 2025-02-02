@@ -1,5 +1,7 @@
 env = "dev"
 bastion_nodes = ["172.31.40.8/32"]
+
+
 vpc = {
   cidr = "10.10.0.0/16"
   public_subnets = ["10.10.0.0/24", "10.10.1.0/24"]
@@ -30,38 +32,38 @@ apps = {
 
 
 db = {
-  mongo ={
-    subnet_ref     = "db"
-    instance_type  = "t3.small"
-    allow_port      = "27107"
-    allow_sg_cidr   = ["10.10.4.0/24", "10.10.5.0/24"]
+  mongo = {
+    subnet_ref    = "db"
+    instance_type = "t3.small"
+    allow_port    = "27107"
+    allow_sg_cidr = ["10.10.4.0/24", "10.10.5.0/24"]
 
   }
-}
 
-mysql = {
+  mysql = {
 
-    subnet_ref     = "db"
-    instance_type  = "t3.small"
-    allow_port      = "3306"
-    allow_sg_cidr   = ["10.10.4.0/24", "10.10.5.0/24"]
+    subnet_ref    = "db"
+    instance_type = "t3.small"
+    allow_port    = "3306"
+    allow_sg_cidr = ["10.10.4.0/24", "10.10.5.0/24"]
 
-}
+  }
 
-rabbitmq = {
+  rabbitmq = {
 
-    subnet_ref     = "mysql"
-    instance_type  = "t3.small"
-    allow_port      = "5672"
-    allow_sg_cidr   = ["10.10.4.0/24", "10.10.5.0/24"]
+    subnet_ref    = "mysql"
+    instance_type = "t3.small"
+    allow_port    = "5672"
+    allow_sg_cidr = ["10.10.4.0/24", "10.10.5.0/24"]
 
-}
+  }
 
-redis = {
+  redis = {
 
-  subnet_ref     = "db"
-  instance_type  = "t3.small"
-  allow_port      = "6379"
-  allow_sg_cidr   = ["10.10.4.0/24", "10.10.5.0/24"]
+    subnet_ref    = "db"
+    instance_type = "t3.small"
+    allow_port    = "6379"
+    allow_sg_cidr = ["10.10.4.0/24", "10.10.5.0/24"]
 
+  }
 }
