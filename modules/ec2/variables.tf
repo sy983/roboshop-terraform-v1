@@ -11,4 +11,5 @@ variable "capacity" {
 }
 variable "asg" {}
 variable "vault_token" {}
+variable "zone_id" {}
 
