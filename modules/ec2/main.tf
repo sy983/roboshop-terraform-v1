@@ -93,8 +93,42 @@ resource "aws_route53_record" "instance" {
   records = [aws_instance.main.*.private_ip[count.index]]
 }
 
+resource "aws_lb" "main" {
+  count         =  var.asg ? 1: 0
+  name               = "${var.name}-${var.env}"
+  internal           = true
+  load_balancer_type = "application"
+  security_groups =  [aws_security_group.load-balancer.*.id[count.index]]
+  subnets            = var.subnet_ids
+
+  tags = {
+    Environment = "${var.name}-${var.env}"
+
+  }
+}
 
 
+resource "aws_security_group" "load-balancer" {
+  name        =  "${var.name}-${var.env}-alb-sg"
+  description =  "${var.name}-${var.env}-alb-sg"
+  vpc_id      =   var.vpc_id
 
+  egress {
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
 
+  }
 
+  ingress {
+    from_port        = 80
+    to_port          = 80
+    protocol         = "tcp"
+    cidr_blocks      = var.allow_sg_cidr
+  }
+
+  tags = {
+    Name = "${var.name}-${var.env}-alb-sg"
+  }
+}
