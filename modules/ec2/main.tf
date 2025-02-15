@@ -37,10 +37,11 @@ resource "aws_launch_template" "main" {
   image_id = data.aws_ami.rhel9.id
   instance_type =  var.instance_type
   vpc_security_group_ids = [aws_security_group.allow_tls.id]
-  user_data     = base64encode(templatefile("${path.module}/userdata.sh" , {
+  user_data     =  base64encode(templatefile("${path.module}/userdata.sh" , {
     env         =  var.env
     role_name   =  var.name
     vault_token =  var.vault_token
+  }))
 
   tags = {
     Name = "${var.name}-${var.env}-lt"
