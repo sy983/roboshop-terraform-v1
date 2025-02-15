@@ -75,8 +75,12 @@ resource "aws_instance" "main" {
 
   }))
   tags = {
-    name = "${var.name}-${var.env}"
+    Name = "${var.name}-${var.env}"
   }
 }
+
+
+
+  }
 
 
