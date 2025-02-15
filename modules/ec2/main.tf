@@ -107,6 +107,17 @@ resource "aws_lb" "main" {
   }
 }
 
+resource "aws_lb_target_group" "main" {
+  count         =  var.asg ? 1: 0
+  name     = "${var.name}-${var.env}"
+  port     = var.allow_port
+  protocol = "HTTP"
+  vpc_id   = var.vpc_id
+}
+
+resource "aws_vpc" "main" {
+  cidr_block = "10.0.0.0/16"
+}
 
 resource "aws_security_group" "load-balancer" {
   name        =  "${var.name}-${var.env}-alb-sg"
