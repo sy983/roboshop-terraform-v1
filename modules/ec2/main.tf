@@ -55,8 +55,9 @@ resource "aws_autoscaling_group" "main" {
   max_size            = var.capacity["max"]
   min_size            = var.capacity["min"]
   vpc_zone_identifier = var.subnet_ids
-  target_group_arn    = [aws_lb_target_group.main.*.arn[count.index]]
+  target_group_arns   = [aws_lb_target_group.main.*.arn[count.index]]
   load_balancers      = [aws_lb.main.*.arn[count.index]]
+
 
 
   launch_template {
