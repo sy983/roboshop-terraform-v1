@@ -16,21 +16,21 @@ module "vpc" {
 
 module "apps" {
   source = "./modules/ec2"
-  depends_on = [module.db, module.vpc]
-  for_each   = var.apps
-  name     = each.key
-  instance_type  = each.value["instance_type"]
+  depends_on       = [module.db, module.vpc]
+  for_each         = var.apps
+  name             = each.key
+  instance_type    = each.value["instance_type"]
   allow_port       = each.value["allow_port"]
-  allow_sg_cidr   = each.value["allow_sg_cidr"]
-  subnet_ids        = module.vpc.subnets [each.value["subnet_ref"]]
-  capacity        =  each.value["capacity"]
-  vpc_id        = module.vpc.vpc_id
-  env           = var.env
-  bastion_nodes = var.bastion_nodes
-  asg           = true
-  vault_token  = var.vault_token
-  zone_id =  var.zone_id
-  internal = each.value["lb_internal"]
+  allow_sg_cidr    = each.value["allow_sg_cidr"]
+  subnet_ids       = module.vpc.subnets [each.value["subnet_ref"]]
+  capacity         = each.value["capacity"]
+  vpc_id           = module.vpc.vpc_id
+  env              = var.env
+  bastion_nodes    = var.bastion_nodes
+  asg              = true
+  vault_token      = var.vault_token
+  zone_id          = var.zone_id
+  internal         = each.value["lb_internal"]
 }
 
 # variable "x" {
@@ -54,6 +54,6 @@ module "db" {
   env           = var.env
   bastion_nodes = var.bastion_nodes
   asg           = false
-  vault_token  = var.vault_token
+  vault_token   = var.vault_token
   zone_id =  var.zone_id
 }
