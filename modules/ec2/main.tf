@@ -55,7 +55,7 @@ resource "aws_autoscaling_group" "main" {
   max_size            = var.capacity["max"]
   min_size            = var.capacity["min"]
   vpc_zone_identifier = var.subnet_ids
-  target_group_arns   = [aws_lb_target_group.main.*.arn[count.index]]
+  target_group_arn    = [aws_lb_target_group.main.*.arn[count.index]]
   load_balancers      = [aws_lb.main.*.arn[count.index]]
 
 
@@ -89,11 +89,11 @@ resource "aws_instance" "main" {
 
 resource "aws_route53_record" "instance" {
   count         =  var.asg ? 0: 1
-  zone_id = var.zone_id
-  name    = "${var.name}-${var.env}"
-  type    = "A"
-  ttl     = 300
-  records = [aws_instance.main.*.private_ip[count.index]]
+  zone_id       = var.zone_id
+  name          = "${var.name}-${var.env}"
+  type          = "A"
+  ttl           = 300
+  records       = [aws_instance.main.*.private_ip[count.index]]
 }
 
 resource "aws_lb" "main" {
@@ -117,6 +117,19 @@ resource "aws_lb_target_group" "main" {
   protocol = "HTTP"
   vpc_id   = var.vpc_id
 }
+
+resource "aws_lb_listener" "front_end" {
+  count         =  var.asg ? 1: 0
+  load_balancer_arn = aws_lb.main.*.arn[count.index]
+  port              = "80"
+  protocol          = "HTTP"
+  default_action {
+    type             = "forward"
+    target_group_arn = aws_lb_target_group.main.*.arn[count.index]
+  }
+}
+
+
 
 resource "aws_security_group" "load-balancer" {
   name        =  "${var.name}-${var.env}-alb-sg"
