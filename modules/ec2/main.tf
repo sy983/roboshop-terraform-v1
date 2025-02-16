@@ -51,10 +51,13 @@ resource "aws_launch_template" "main" {
 resource "aws_autoscaling_group" "main" {
   count      = var.asg ? 1: 0
   name = "${var.name}-${var.env}-asg"
-  desired_capacity   = var.capacity["desired"]
-  max_size           = var.capacity["max"]
-  min_size           = var.capacity["min"]
+  desired_capacity    = var.capacity["desired"]
+  max_size            = var.capacity["max"]
+  min_size            = var.capacity["min"]
   vpc_zone_identifier = var.subnet_ids
+  target_group_arns   = [aws_lb_target_group.main.*.arn[count.index]]
+  load_balancers      = [aws_lb.main.*.arn[count.index]]
+
 
   launch_template {
     id      = aws_launch_template.main.*.id[0]
@@ -114,7 +117,6 @@ resource "aws_lb_target_group" "main" {
   protocol = "HTTP"
   vpc_id   = var.vpc_id
 }
-
 
 resource "aws_security_group" "load-balancer" {
   name        =  "${var.name}-${var.env}-alb-sg"
