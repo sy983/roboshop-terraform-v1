@@ -127,8 +127,6 @@ resource "aws_lb_listener" "front_end" {
   }
 }
 
-
-
 resource "aws_security_group" "load-balancer" {
   name        =  "${var.name}-${var.env}-alb-sg"
   description =  "${var.name}-${var.env}-alb-sg"
