@@ -27,6 +27,7 @@ apps = {
       max = 1
       min =1
     }
+    lb_internal  = false
   }
 
   catalogue = {
@@ -40,6 +41,7 @@ apps = {
       min =1
     }
   }
+  lb_internal  = true
 }
 
 
