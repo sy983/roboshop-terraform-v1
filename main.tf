@@ -50,7 +50,7 @@ module "db" {
   instance_type = each.value["instance_type"]
   allow_port    = each.value["allow_port"]
   allow_sg_cidr = each.value["allow_sg_cidr"]
-  subnet_ids    = module.vpc.subnets [each.value["subnet_ref"]]
+  subnet_ids    = module.vpc.subnets[each.value["subnet_ref"]]
   vpc_id        = module.vpc.vpc_id
   env           = var.env
   bastion_nodes = var.bastion_nodes
