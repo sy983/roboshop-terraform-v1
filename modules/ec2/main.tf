@@ -160,3 +160,11 @@ resource "aws_security_group" "load-balancer" {
     Name = "${var.name}-${var.env}-alb-sg"
   }
 }
+resource "aws_route53_record" "lb" {
+  count         =  var.asg ? 0: 1
+  zone_id       = var.zone_id
+  name          = "${var.name}-${var.env}"
+  type          = "CNAME"
+  ttl           = 300
+  records       = [aws_lb.main.*.dns_name[count.index]]
+
