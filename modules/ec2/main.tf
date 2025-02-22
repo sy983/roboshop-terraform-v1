@@ -97,7 +97,7 @@ resource "aws_route53_record" "instance" {
 resource "aws_lb" "main" {
   count         =  var.asg ? 1: 0
   name               = "${var.name}-${var.env}"
-  internal           = true
+  internal           = var.internal
   load_balancer_type = "application"
   security_groups =  [aws_security_group.load-balancer.*.id[count.index]]
   subnets            = var.subnet_ids
