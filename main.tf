@@ -32,6 +32,7 @@ module "apps" {
   zone_id          = var.zone_id
   internal         = each.value["lb_internal"]
   lb_subnets_ids   = module.vpc.subnets[each.value["lb_subnets_ref"]]
+  allow_lb_sg_cidr = each.value["allow_lb_sg_cidr"]
 }
 
 # variable "x" {
