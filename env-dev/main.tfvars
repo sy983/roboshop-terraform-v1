@@ -28,6 +28,7 @@ apps = {
       min =1
     }
     lb_internal  = false
+    lb_subnets_ref = "public"
   }
 
   catalogue = {
@@ -41,6 +42,7 @@ apps = {
       min =1
     }
     lb_internal  = true
+    lb_subnets_ref = "app"
   }
 }
 

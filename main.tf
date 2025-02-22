@@ -22,7 +22,7 @@ module "apps" {
   instance_type    = each.value["instance_type"]
   allow_port       = each.value["allow_port"]
   allow_sg_cidr    = each.value["allow_sg_cidr"]
-  subnet_ids       = module.vpc.subnets [each.value["subnet_ref"]]
+  subnet_ids       = module.vpc.subnets[each.value["subnet_ref"]]
   capacity         = each.value["capacity"]
   vpc_id           = module.vpc.vpc_id
   env              = var.env
@@ -31,6 +31,7 @@ module "apps" {
   vault_token      = var.vault_token
   zone_id          = var.zone_id
   internal         = each.value["lb_internal"]
+  lb_subnets_ids   = module.vpc.subnets[each.value["lb_subnets_ref"]]
 }
 
 # variable "x" {
