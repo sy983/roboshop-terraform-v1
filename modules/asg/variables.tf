@@ -12,14 +12,11 @@ variable "capacity" {
 variable "asg" {}
 variable "vault_token" {}
 variable "zone_id" {}
-variable "internal" {
-  default = null
-}
 variable "lb_subnets_ids" {
   default = []
 }
-variable "allow_lb_sg_cidr" {
-  default = []
-}
+variable "dns_name" {}
+variable "listener_arn" {}
+variable "lb_rule_priority" {}
 
-variable "acm_https_arn" {}
+
