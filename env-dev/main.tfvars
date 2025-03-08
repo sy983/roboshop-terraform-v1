@@ -144,14 +144,14 @@ db = {
 }
 load_balancers = {
   private = {
-    internal           = ture
+    internal           = true
     load_balancer_type = "application"
     allow_lb_sg_cidr   = ["10.10.2.0/24", "10.10.3.0/24","10.10.4.0/24", "10.10.5.0/24"]
     subnet_ref         = "app"
     acm_https_arn      = null
     listener_port      = "80"
     listener_protocol  = "HTTP"
-    ssl_policy        = null
+    ssl_policy        =  null
   }
   public = {
     internal           = false
