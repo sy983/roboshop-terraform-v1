@@ -15,7 +15,7 @@ module "vpc" {
 }
 
 module "apps" {
-  source = "./modules/ec2"
+  source = "./modules/asg"
   depends_on       = [module.db, module.vpc]
   for_each         = var.apps
   name             = each.key
@@ -33,6 +33,7 @@ module "apps" {
   internal         = each.value["lb_internal"]
   lb_subnets_ids   = module.vpc.subnets[each.value["lb_subnets_ref"]]
   allow_lb_sg_cidr = each.value["allow_lb_sg_cidr"]
+  acm_https_arn    = each.value["acm_https_arn"]
 }
 
 # variable "x" {
@@ -55,7 +56,6 @@ module "db" {
   vpc_id        = module.vpc.vpc_id
   env           = var.env
   bastion_nodes = var.bastion_nodes
-  asg           = false
   vault_token   = var.vault_token
   zone_id =  var.zone_id
 }
