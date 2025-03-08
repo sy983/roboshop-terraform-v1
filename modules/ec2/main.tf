@@ -51,7 +51,7 @@ resource "aws_route53_record" "instance" {
   name          = "${var.name}-${var.env}"
   type          = "A"
   ttl           = 300
-  records       = [aws_instance.main.*.private_ip]
+  records       = [aws_instance.main.private_ip]
 }
 
 
