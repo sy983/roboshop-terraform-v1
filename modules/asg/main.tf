@@ -52,7 +52,7 @@ resource "aws_autoscaling_group" "main" {
   max_size            = var.capacity["max"]
   min_size            = var.capacity["min"]
   vpc_zone_identifier = var.subnet_ids
-  target_group_arns = [aws_lb_target_group.main.*.arn]
+  target_group_arns = [aws_lb_target_group.main.arn]
 
   launch_template {
     id      = aws_launch_template.main.id
@@ -101,7 +101,7 @@ resource "aws_autoscaling_group" "main" {
     name               = "${var.name}-${var.env}"
     internal           = var.internal
     load_balancer_type = "application"
-    security_groups =  [aws_security_group.load-balancer.*.id]
+    security_groups =  [aws_security_group.load-balancer.id]
     subnets            = var.lb_subnets_ids
 
     tags = {
