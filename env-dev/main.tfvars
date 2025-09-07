@@ -12,8 +12,8 @@ vpc = {
   app_subnets = ["10.10.4.0/24", "10.10.5.0/24"]
   db_subnets = ["10.10.6.0/24", "10.10.7.0/24"]
   availability_zones = ["us-east-1a","us-east-1b" ]
-  default_vpc_id = "vpc-0ca400722d89f3454"
-  default_vpc_rt = "rtb-05d43a8e321b33ce4"
+  default_vpc_id = "vpc-05b94c3e00367664a"
+  default_vpc_rt = "rtb-05ab341038a6e8444"
   default_vpc_cidr = "172.31.0.0/16"
 
 }
@@ -158,7 +158,8 @@ load_balancers = {
     load_balancer_type = "application"
     allow_lb_sg_cidr   = ["0.0.0.0/0"]
     subnet_ref         = "public"
-    acm_https_arn      ="arn:aws:acm:us-east-1:058264432027:certificate/709d5b12-5137-4450-a044-d0407673d76e"
+## acm_https_arn     ="arn:aws:acm:us-east-1:058264432027:certificate/709d5b12-5137-4450-a044-d0407673d76e"
+    acm_https_arn      = "arn:aws:acm:us-east-1:584644862117:certificate/43571863-05d9-431f-a672-1760f77e56c2"
     listener_port      = "443"
     listener_protocol  = "HTTPS"
     ssl_policy        = "ELBSecurityPolicy-2016-08"
