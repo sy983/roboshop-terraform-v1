@@ -158,10 +158,10 @@ load_balancers = {
     load_balancer_type = "application"
     allow_lb_sg_cidr   = ["0.0.0.0/0"]
     subnet_ref         = "public"
-## acm_https_arn     ="arn:aws:acm:us-east-1:058264432027:certificate/709d5b12-5137-4450-a044-d0407673d76e"
+## acm_https_arn       ="arn:aws:acm:us-east-1:058264432027:certificate/709d5b12-5137-4450-a044-d0407673d76e"
     acm_https_arn      = "arn:aws:acm:us-east-1:584644862117:certificate/43571863-05d9-431f-a672-1760f77e56c2"
     listener_port      = "443"
     listener_protocol  = "HTTPS"
-    ssl_policy        = "ELBSecurityPolicy-2016-08"
+    ssl_policy         = "ELBSecurityPolicy-2016-08"
   }
 }
